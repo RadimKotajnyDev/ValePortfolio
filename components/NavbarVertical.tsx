@@ -16,10 +16,10 @@ function classNames(...classes: any[]) {
 export default function NavbarVertical() {
 
     return (
-        <nav className="fixed top-0 left-0 h-screen w-16 flex flex-col bg-white dark:bg-gray-900 shadow-lg justify-end">
+        <nav className="fixed top-0 left-0 h-screen w-16 hidden sm:flex flex-col bg-white dark:bg-gray-900 shadow-lg justify-end">
             {navigation.map((item) => (
                 <Link href={item.href} key={item.name} target="_blank" >
-                    <Image src={item.icon} alt={item.name} width={64} height={64}/>
+                    <Image src={item.icon} alt={item.name} className="scale-50" width={64} height={64}/>
                 </Link>
             ))}
         </nav>

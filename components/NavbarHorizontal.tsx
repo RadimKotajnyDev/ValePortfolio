@@ -3,6 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import {useState} from "react";
+import {FcMenu} from "react-icons/fc"
 
 const navigation = [
     {name: '// Home', href: '/'},
@@ -17,13 +19,22 @@ function classNames(...classes: any[]) {
 }
 
 export default function NavbarHorizontal() {
+    const [nav, setNav] = useState(false)
     const pathName = usePathname();
 
     return (
-        <nav className="flex justify-end">
-            {navigation.map((item) => (
-                <Link href={item.href} key={item.name} className={classNames(pathName == item.href ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "px-3 py-2 rounded-md text-sm font-medium m-5")}>{item.name}</Link>
-            ))}
-        </nav>
+        <>
+            <nav className="hidden sm:flex justify-end">
+                {navigation.map((item) => (
+                    <Link href={item.href} key={item.name} className={classNames(pathName == item.href ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "px-3 py-2 rounded-md text-sm font-medium m-5")}>{item.name}</Link>
+                ))}
+            </nav>
+            <nav className="flex sm:hidden">
+                <button className="m-5" onClick={() => setNav(!nav)}>
+                    <FcMenu size={40} />
+                </button>
+                
+            </nav>
+        </>
     );
 }
